@@ -31,7 +31,7 @@
 @property (nonatomic, strong, readonly) NSDate *fileDate;
 @property (nonatomic, strong, readwrite) NSDate *lastOpen;
 @property (nonatomic, strong, readonly) NSNumber *fileSize;
-@property (nonatomic, strong, readonly) NSNumber *pageCount;
+@property (nonatomic, strong) NSNumber *pageCount;
 @property (nonatomic, strong, readwrite) NSNumber *pageNumber;
 @property (nonatomic, strong, readonly) NSMutableIndexSet *bookmarks;
 @property (nonatomic, strong, readonly) NSString *password;

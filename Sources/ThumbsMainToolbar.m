@@ -47,7 +47,7 @@
 
 #pragma mark - Properties
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
 #pragma mark - ThumbsMainToolbar instance methods
 
@@ -156,14 +156,14 @@
 
 - (void)showControlTapped:(UISegmentedControl *)control
 {
-	[delegate tappedInToolbar:self showControl:control];
+	[self.delegate tappedInToolbar:self showControl:control];
 }
 
 #pragma mark - UIButton action methods
 
 - (void)doneButtonTapped:(UIButton *)button
 {
-	[delegate tappedInToolbar:self doneButton:button];
+	[self.delegate tappedInToolbar:self doneButton:button];
 }
 
 @end

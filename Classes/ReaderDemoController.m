@@ -26,6 +26,8 @@
 #import "ReaderDemoController.h"
 #import "ReaderViewController.h"
 
+#import "ReaderMultiBoard.h"
+
 @interface ReaderDemoController () <ReaderViewControllerDelegate>
 
 @end
@@ -71,6 +73,8 @@
 
 	self.title = [[NSString alloc] initWithFormat:@"%@ v%@", name, version];
 
+    [self.navigationController setNavigationBarHidden:YES];
+    
 	CGSize viewSize = self.view.bounds.size;
 
 	CGRect labelRect = CGRectMake(0.0f, 0.0f, 80.0f, 32.0f);
@@ -170,37 +174,12 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
 {
-	NSString *phrase = nil; // Document password (for unlocking most encrypted PDF files)
-
-	NSArray *pdfs = [[NSBundle mainBundle] pathsForResourcesOfType:@"pdf" inDirectory:nil];
-
-	NSString *filePath = [pdfs firstObject]; assert(filePath != nil); // Path to first PDF file
-
-	ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:phrase];
-
-	if (document != nil) // Must have a valid ReaderDocument object in order to proceed with things
-	{
-		ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-
-		readerViewController.delegate = self; // Set the ReaderViewController delegate to self
-
-#if (DEMO_VIEW_CONTROLLER_PUSH == TRUE)
-
-		[self.navigationController pushViewController:readerViewController animated:YES];
-
-#else // present in a modal view controller
-
-		readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-		readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-
-		[self presentViewController:readerViewController animated:YES completion:NULL];
-
-#endif // DEMO_VIEW_CONTROLLER_PUSH
-	}
-	else // Log an error so that we know that something went wrong
-	{
-		NSLog(@"%s [ReaderDocument withDocumentFilePath:'%@' password:'%@'] failed.", __FUNCTION__, filePath, phrase);
-	}
+    recognizer.enabled = NO;
+        ReaderMultiBoard *view = [[ReaderMultiBoard alloc] initWithFrame:self.view.bounds];
+        view.stringUrl = @"http://61.129.251.252/smph/CMSAPI/pniplZoYyryo/a2015081014405024409";
+        view.pageCount = 20;
+        [view loadResource];
+        [self.view addSubview:view];
 }
 
 #pragma mark - ReaderViewControllerDelegate methods

@@ -272,7 +272,10 @@
 
 - (void)tappedInToolbar:(ThumbsMainToolbar *)toolbar doneButton:(UIButton *)button
 {
-	[delegate dismissThumbsViewController:self]; // Dismiss thumbs display
+    //test
+//	[delegate dismissThumbsViewController:self]; // Dismiss thumbs display
+    toolbar.delegate = nil;
+    [self.view removeFromSuperview];
 }
 
 #pragma mark - UIThumbsViewDelegate methods

@@ -40,7 +40,7 @@
 
 @interface ThumbsMainToolbar : UIXToolbarView
 
-@property (nonatomic, weak, readwrite) id <ThumbsMainToolbarDelegate> delegate;
+@property (nonatomic, retain) id <ThumbsMainToolbarDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title;
 

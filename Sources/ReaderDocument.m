@@ -164,27 +164,7 @@
 
 + (BOOL)isPDF:(NSString *)filePath
 {
-	BOOL state = NO;
-
-	if (filePath != nil) // Must have a file path
-	{
-		const char *path = [filePath fileSystemRepresentation];
-
-		int fd = open(path, O_RDONLY); // Open the file
-
-		if (fd > 0) // We have a valid file descriptor
-		{
-			const char sig[1024]; // File signature buffer
-
-			ssize_t len = read(fd, (void *)&sig, sizeof(sig));
-
-			state = (strnstr(sig, "%PDF", len) != NULL);
-
-			close(fd); // Close the file
-		}
-	}
-
-	return state;
+    return YES;
 }
 
 #pragma mark - ReaderDocument instance methods
@@ -193,8 +173,6 @@
 {
 	if ((self = [super init])) // Initialize superclass first
 	{
-		if ([ReaderDocument isPDF:filePath] == YES) // Valid PDF
-		{
 			_guid = [ReaderDocument GUID]; // Create document's GUID
 
 			_password = [phrase copy]; // Keep copy of document password
@@ -205,22 +183,22 @@
 
 			_bookmarks = [NSMutableIndexSet new]; // Bookmarked pages index set
 
-			CFURLRef docURLRef = (__bridge CFURLRef)[self fileURL]; // CFURLRef from NSURL
-
-			CGPDFDocumentRef thePDFDocRef = CGPDFDocumentCreateUsingUrl(docURLRef, _password);
-
-			if (thePDFDocRef != NULL) // Get the total number of pages in the document
-			{
-				NSInteger pageCount = CGPDFDocumentGetNumberOfPages(thePDFDocRef);
-
-				_pageCount = [NSNumber numberWithInteger:pageCount];
-
-				CGPDFDocumentRelease(thePDFDocRef); // Cleanup
-			}
-			else // Cupertino, we have a problem with the document
-			{
-				NSAssert(NO, @"CGPDFDocumentRef == NULL");
-			}
+//			CFURLRef docURLRef = (__bridge CFURLRef)[self fileURL]; // CFURLRef from NSURL
+//
+//			CGPDFDocumentRef thePDFDocRef = CGPDFDocumentCreateUsingUrl(docURLRef, _password);
+//
+//			if (thePDFDocRef != NULL) // Get the total number of pages in the document
+//			{
+//				NSInteger pageCount = CGPDFDocumentGetNumberOfPages(thePDFDocRef);
+//
+//				_pageCount = [NSNumber numberWithInteger:pageCount];
+//
+//				CGPDFDocumentRelease(thePDFDocRef); // Cleanup
+//			}
+//			else // Cupertino, we have a problem with the document
+//			{
+//				NSAssert(NO, @"CGPDFDocumentRef == NULL");
+//			}
 
 			_lastOpen = [NSDate dateWithTimeIntervalSinceReferenceDate:0.0];
 
@@ -233,11 +211,7 @@
 			_fileSize = [fileAttributes objectForKey:NSFileSize]; // File size (bytes)
 
 			[self archiveDocumentProperties]; // Archive ReaderDocument object
-		}
-		else // Not a valid PDF file
-		{
-			self = nil;
-		}
+
 	}
 
 	return self;
@@ -259,17 +233,17 @@
 
 - (BOOL)canEmail
 {
-	return YES;
+    return NO;
 }
 
 - (BOOL)canExport
 {
-	return YES;
+    return NO;
 }
 
 - (BOOL)canPrint
 {
-	return YES;
+    return NO;
 }
 
 - (BOOL)archiveDocumentProperties
