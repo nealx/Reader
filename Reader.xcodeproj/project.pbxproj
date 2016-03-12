@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		089FC2901C8D30E700670AD6 /* ReaderMultiBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 089FC28F1C8D30E700670AD6 /* ReaderMultiBoard.m */; };
-		089FC2931C8D30F800670AD6 /* ReaderMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 089FC2921C8D30F800670AD6 /* ReaderMultiCell.m */; };
+		0878E7661C93C83800074687 /* ReaderMultiBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0878E7631C93C83800074687 /* ReaderMultiBoard.m */; };
+		0878E7671C93C83800074687 /* ReaderMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0878E7651C93C83800074687 /* ReaderMultiCell.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -82,10 +82,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		089FC28E1C8D30E700670AD6 /* ReaderMultiBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMultiBoard.h; sourceTree = "<group>"; };
-		089FC28F1C8D30E700670AD6 /* ReaderMultiBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderMultiBoard.m; sourceTree = "<group>"; };
-		089FC2911C8D30F800670AD6 /* ReaderMultiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderMultiCell.h; sourceTree = "<group>"; };
-		089FC2921C8D30F800670AD6 /* ReaderMultiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReaderMultiCell.m; sourceTree = "<group>"; };
+		0878E7621C93C83800074687 /* ReaderMultiBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMultiBoard.h; path = Sources/ReaderMultiBoard.h; sourceTree = "<group>"; };
+		0878E7631C93C83800074687 /* ReaderMultiBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMultiBoard.m; path = Sources/ReaderMultiBoard.m; sourceTree = "<group>"; };
+		0878E7641C93C83800074687 /* ReaderMultiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMultiCell.h; path = Sources/ReaderMultiCell.h; sourceTree = "<group>"; };
+		0878E7651C93C83800074687 /* ReaderMultiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMultiCell.m; path = Sources/ReaderMultiCell.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -225,18 +225,6 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		089FC28D1C8D30D200670AD6 /* Multi */ = {
-			isa = PBXGroup;
-			children = (
-				089FC28E1C8D30E700670AD6 /* ReaderMultiBoard.h */,
-				089FC28F1C8D30E700670AD6 /* ReaderMultiBoard.m */,
-				089FC2911C8D30F800670AD6 /* ReaderMultiCell.h */,
-				089FC2921C8D30F800670AD6 /* ReaderMultiCell.m */,
-			);
-			name = Multi;
-			path = Sources/Multi;
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +357,10 @@
 		45BD5A7C13AE6C3B00D6FE97 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				089FC28D1C8D30D200670AD6 /* Multi */,
+				0878E7621C93C83800074687 /* ReaderMultiBoard.h */,
+				0878E7631C93C83800074687 /* ReaderMultiBoard.m */,
+				0878E7641C93C83800074687 /* ReaderMultiCell.h */,
+				0878E7651C93C83800074687 /* ReaderMultiCell.m */,
 				45AB72EF141FC0B1003524C3 /* ReaderConstants.h */,
 				45AB72F0141FC0B1003524C3 /* ReaderConstants.m */,
 				45AB72F7141FC0B1003524C3 /* ReaderDocument.h */,
@@ -587,15 +578,15 @@
 				45AB72EB141FC0A2003524C3 /* ReaderAppDelegate.m in Sources */,
 				45AB72EC141FC0A2003524C3 /* ReaderDemoController.m in Sources */,
 				45AB7313141FC0B1003524C3 /* CGPDFDocument.m in Sources */,
-				089FC2901C8D30E700670AD6 /* ReaderMultiBoard.m in Sources */,
 				45AB7314141FC0B1003524C3 /* ReaderConstants.m in Sources */,
 				45AB7315141FC0B1003524C3 /* ReaderContentPage.m in Sources */,
 				45AB7316141FC0B1003524C3 /* ReaderContentTile.m in Sources */,
+				0878E7661C93C83800074687 /* ReaderMultiBoard.m in Sources */,
 				45AB7317141FC0B1003524C3 /* ReaderContentView.m in Sources */,
 				45AB7318141FC0B1003524C3 /* ReaderDocument.m in Sources */,
-				089FC2931C8D30F800670AD6 /* ReaderMultiCell.m in Sources */,
 				45AB7319141FC0B1003524C3 /* ReaderMainPagebar.m in Sources */,
 				45AB731A141FC0B1003524C3 /* ReaderMainToolbar.m in Sources */,
+				0878E7671C93C83800074687 /* ReaderMultiCell.m in Sources */,
 				45AB731C141FC0B1003524C3 /* ReaderThumbCache.m in Sources */,
 				45AB731D141FC0B1003524C3 /* ReaderThumbFetch.m in Sources */,
 				45AB731E141FC0B1003524C3 /* ReaderThumbQueue.m in Sources */,
