@@ -209,7 +209,10 @@ ReaderMainPagebarDelegate>
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar
              doneButton:(UIButton *)button
 {
-    [self removeFromSuperview];
+    if (self.delegate
+        && [self.delegate respondsToSelector:@selector(ReaderMultiBoardWillRemove:)]) {
+        [self.delegate ReaderMultiBoardWillRemove:self];
+    }
 }
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar
