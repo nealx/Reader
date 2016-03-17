@@ -41,6 +41,7 @@ ReaderMainPagebarDelegate>
 - (void)loadResource
 {
     @autoreleasepool {
+        isBarShow = YES;
         marginBetweenPage = 20;
         currentPage = 1;
         
@@ -53,13 +54,7 @@ ReaderMainPagebarDelegate>
         [self addSubview:self.toolBar];
         [self addSubview:self.thumbBar];
         
-        if ([self.document.bookmarks containsIndex:currentPage])
-        {
-            [self.toolBar setBookmarkState:YES];
-        }
-        else     {
-            [self.toolBar setBookmarkState:NO];
-        }
+        [self refreshBarStatus];
 
         UITapGestureRecognizer *gesTap =
         [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -127,6 +122,20 @@ ReaderMainPagebarDelegate>
     return _thumbBar;
 }
 
+- (void)refreshBarStatus
+{
+    if ([self.document.bookmarks containsIndex:currentPage])
+    {
+        [self.toolBar setBookmarkState:YES];
+    }
+    else     {
+        [self.toolBar setBookmarkState:NO];
+    }
+    
+    self.document.pageNumber = @(currentPage);
+    [self.thumbBar updatePagebar];
+}
+
 #pragma mark - delegate dataresource
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
                      withVelocity:(CGPoint)velocity
@@ -150,14 +159,9 @@ ReaderMainPagebarDelegate>
     }
     newTargetOffset = indexPage * pageWidth;
     
-    currentPage = indexPage;
-    if ([self.document.bookmarks containsIndex:currentPage])
-    {
-        [self.toolBar setBookmarkState:YES];
-    }
-    else     {
-        [self.toolBar setBookmarkState:NO];
-    }
+    currentPage = indexPage+1;
+    
+    [self refreshBarStatus];
 
     if (newTargetOffset < 0)
         newTargetOffset = 0;
@@ -223,16 +227,21 @@ ReaderMainPagebarDelegate>
         [printInteraction dismissAnimated:NO];
     }
     
-    ThumbsViewController *thumbsViewController = [[ThumbsViewController alloc] initWithReaderDocument:self.document];
+    CGRect rect = self.bounds;
+    rect.origin.y = rect.size.height;
     
+    ThumbsViewController *thumbsViewController = [[ThumbsViewController alloc] initWithReaderDocument:self.document];
     thumbsViewController.title = self.title;
     thumbsViewController.delegate = self;
-    
     thumbsViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     thumbsViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    
+    thumbsViewController.view.frame = rect;
     [self addSubview:thumbsViewController.view];
-//    [self presentViewController:thumbsViewController animated:NO completion:NULL];
+    
+    [UIView animateWithDuration:0.3
+                     animations:^{
+                         thumbsViewController.view.frame = self.bounds;
+                     }];
 }
 
 - (void)tappedInToolbar:(ReaderMainToolbar *)toolbar
@@ -266,24 +275,19 @@ ReaderMainPagebarDelegate>
         [self.document.bookmarks addIndex:currentPage];
         [self.toolBar setBookmarkState:YES];
     }
+    [self.document archiveDocumentProperties];
 }
 
 - (void)gotoPgae:(NSInteger )page
 {
+    currentPage = page;
     float pageWidth = self.bounds.size.width + marginBetweenPage; // width space
     CGPoint offset = CGPointMake(pageWidth*(page-1),
                                  0);
     [self.ccContent setContentOffset:offset
                             animated:YES];
     
-    if ([self.document.bookmarks containsIndex:page])
-    {
-        [self.toolBar setBookmarkState:YES];
-    }
-    else
-    {
-        [self.toolBar setBookmarkState:NO];
-    }
+    [self refreshBarStatus];
 }
 
 #pragma mark  - delegate ThumbsViewController
@@ -291,11 +295,23 @@ ReaderMainPagebarDelegate>
                     gotoPage:(NSInteger)page
 {
     [self gotoPgae:page];
+
+    self.document.pageNumber = @(page);
+    [self.thumbBar updatePagebar];
 }
 
 - (void)dismissThumbsViewController:(ThumbsViewController *)viewController
 {
-    [viewController.view removeFromSuperview];
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         CGRect rect = self.bounds;
+                         rect.origin.y = rect.size.height;
+                         viewController.view.frame = rect;
+                     } completion:^(BOOL finished) {
+                         [viewController.view removeFromSuperview];
+                     }];
 }
 
 #pragma mark - delegate ReaderMainPagebar
@@ -375,10 +391,19 @@ ReaderMainPagebarDelegate>
             else
             {
                 isBarShow = !isBarShow;
+                [self refreshBarStatus];
                 if (isBarShow) {
-                    self.toolBar.hidden = NO;
+                    [UIView animateWithDuration:0.3
+                                     animations:^{
+                                         self.toolBar.alpha = 1;
+                                         self.thumbBar.alpha = 1;
+                                     }];
                 } else {
-                    self.toolBar.hidden = YES;
+                    [UIView animateWithDuration:0.3
+                                     animations:^{
+                                         self.toolBar.alpha = 0;
+                                         self.thumbBar.alpha = 0;
+                                     }];
                 }
             }
             return;

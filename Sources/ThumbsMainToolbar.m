@@ -78,7 +78,7 @@
 		CGFloat leftButtonX = BUTTON_X; // Left-side button start X position
 
 		UIFont *doneButtonFont = [UIFont systemFontOfSize:BUTTON_FONT_SIZE];
-		NSString *doneButtonText = NSLocalizedString(@"Done", @"button");
+		NSString *doneButtonText = NSLocalizedString(@"返回", @"button");
 		CGSize doneButtonSize = [doneButtonText sizeWithFont:doneButtonFont];
 		CGFloat doneButtonWidth = (doneButtonSize.width + TEXT_BUTTON_PADDING);
 

@@ -177,7 +177,7 @@
     recognizer.enabled = NO;
         ReaderMultiBoard *view = [[ReaderMultiBoard alloc] initWithFrame:self.view.bounds];
         view.stringUrl = @"http://61.129.251.252/smph/CMSAPI/pniplZoYyryo/a2015081014405024409";
-        view.pageCount = 20;
+        view.pageCount = 120;
         [view loadResource];
         [self.view addSubview:view];
 }

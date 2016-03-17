@@ -128,10 +128,15 @@
                                                                        NSUserDomainMask,
                                                                        YES);
         NSString *cachePath = [cachesDirectory objectAtIndex:0];
-        NSString *pathLocalPdf = [NSString stringWithFormat:@"%@/%@/%@",
-                                  cachePath,
-                                  [fileUrl lastPathComponent],
-                                  fileName];
+        NSString *pathLocalPdf = nil;
+        if ([fileUrl hasSuffix:@".pdf"]) {
+            pathLocalPdf = fileUrl;
+        } else {
+            pathLocalPdf = [NSString stringWithFormat:@"%@/%@/%@",
+                            cachePath,
+                            [fileUrl lastPathComponent],
+                            fileName];
+        }
         NSFileManager *fm = [NSFileManager defaultManager];
         BOOL isDirectory;
         BOOL fileExist = [fm fileExistsAtPath:pathLocalPdf
@@ -143,10 +148,14 @@
             NSString *pathOnlinePdf = [NSString stringWithFormat:@"%@/%@",
                                        fileUrl,
                                        fileName];
+            
             NSURL *url = [NSURL URLWithString:pathOnlinePdf];
             NSData *data = [NSData dataWithContentsOfURL:url];
             [data writeToFile:pathLocalPdf
                    atomically:YES];
+            NSLog(@"pathOnlinePdf %@ \n pathLocalPdf %@",
+                  pathOnlinePdf,
+                  pathLocalPdf);
         }
         
         if (self.isCancelled == NO) {            

@@ -63,7 +63,6 @@
       withIntermediateDirectories:NO
                        attributes:nil
                             error:&error];
-        NSLog(error.description);
     }
     NSString *fileName = [NSString stringWithFormat:@"%d.pdf",
                           self.index];
@@ -115,6 +114,7 @@
 {
     NSURL *url = [NSURL URLWithString:self.pathOnlinePdf];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSURL *destinationUrl = [NSURL fileURLWithPath:self.pathLocalPdf];
     AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
     
     __weak ReaderMultiCell *weakSelf = self;
@@ -123,7 +123,6 @@
                             progress:nil
                          destination: ^NSURL *(NSURL *targetPath, NSURLResponse *response)
      {
-         NSURL *destinationUrl = [NSURL fileURLWithPath:weakSelf.pathLocalPdf];
          return destinationUrl;
      }                  completionHandler: ^(NSURLResponse *response, NSURL *filePath, NSError *error)
      {

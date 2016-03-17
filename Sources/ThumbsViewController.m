@@ -273,9 +273,8 @@
 - (void)tappedInToolbar:(ThumbsMainToolbar *)toolbar doneButton:(UIButton *)button
 {
     //test
-//	[delegate dismissThumbsViewController:self]; // Dismiss thumbs display
+	[delegate dismissThumbsViewController:self]; // Dismiss thumbs display
     toolbar.delegate = nil;
-    [self.view removeFromSuperview];
 }
 
 #pragma mark - UIThumbsViewDelegate methods
@@ -292,6 +291,8 @@
 
 - (void)thumbsView:(ReaderThumbsView *)thumbsView updateThumbCell:(ThumbsPageThumb *)thumbCell forIndex:(NSInteger)index
 {
+    [thumbCell showImage:nil];
+    
 	CGSize size = [thumbCell maximumContentSize]; // Get the cell's maximum content size
 
 	NSInteger page = (showBookmarked ? [[bookmarked objectAtIndex:index] integerValue] : (index + 1));
