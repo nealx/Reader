@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "vfrReaderMulti"
-  s.version      = "0.2"
+  s.version      = “0.3.1”
   s.summary      =  "vfrReader with multi pdf"
   s.license      = "MIT"
   s.homepage = "http://www.creacree.com/"
