@@ -9,6 +9,7 @@
 #import "ReaderMultiCell.h"
 
 #import <AFNetworking/AFNetworking.h>
+#import "AFReaderAPIClient.h"
 
 @interface ReaderMultiCell ()
 @property (nonatomic, copy) NSString *pathBook;
@@ -115,7 +116,7 @@
     NSURL *url = [NSURL URLWithString:self.pathOnlinePdf];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURL *destinationUrl = [NSURL fileURLWithPath:self.pathLocalPdf];
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    AFHTTPSessionManager *session = [AFReaderAPIClient sharedClient];
     
     __weak ReaderMultiCell *weakSelf = self;
     NSURLSessionDownloadTask *downloadTask =

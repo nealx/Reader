@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0878E7661C93C83800074687 /* ReaderMultiBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 0878E7631C93C83800074687 /* ReaderMultiBoard.m */; };
 		0878E7671C93C83800074687 /* ReaderMultiCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0878E7651C93C83800074687 /* ReaderMultiCell.m */; };
+		08F9C5161CAE6C89009D9DEE /* AFReaderAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 08F9C5151CAE6C89009D9DEE /* AFReaderAPIClient.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -86,6 +87,8 @@
 		0878E7631C93C83800074687 /* ReaderMultiBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMultiBoard.m; path = Sources/ReaderMultiBoard.m; sourceTree = "<group>"; };
 		0878E7641C93C83800074687 /* ReaderMultiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReaderMultiCell.h; path = Sources/ReaderMultiCell.h; sourceTree = "<group>"; };
 		0878E7651C93C83800074687 /* ReaderMultiCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReaderMultiCell.m; path = Sources/ReaderMultiCell.m; sourceTree = "<group>"; };
+		08F9C5141CAE6C89009D9DEE /* AFReaderAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFReaderAPIClient.h; sourceTree = "<group>"; };
+		08F9C5151CAE6C89009D9DEE /* AFReaderAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFReaderAPIClient.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Reader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -357,6 +360,8 @@
 		45BD5A7C13AE6C3B00D6FE97 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				08F9C5141CAE6C89009D9DEE /* AFReaderAPIClient.h */,
+				08F9C5151CAE6C89009D9DEE /* AFReaderAPIClient.m */,
 				0878E7621C93C83800074687 /* ReaderMultiBoard.h */,
 				0878E7631C93C83800074687 /* ReaderMultiBoard.m */,
 				0878E7641C93C83800074687 /* ReaderMultiCell.h */,
@@ -578,6 +583,7 @@
 				45AB72EB141FC0A2003524C3 /* ReaderAppDelegate.m in Sources */,
 				45AB72EC141FC0A2003524C3 /* ReaderDemoController.m in Sources */,
 				45AB7313141FC0B1003524C3 /* CGPDFDocument.m in Sources */,
+				08F9C5161CAE6C89009D9DEE /* AFReaderAPIClient.m in Sources */,
 				45AB7314141FC0B1003524C3 /* ReaderConstants.m in Sources */,
 				45AB7315141FC0B1003524C3 /* ReaderContentPage.m in Sources */,
 				45AB7316141FC0B1003524C3 /* ReaderContentTile.m in Sources */,
